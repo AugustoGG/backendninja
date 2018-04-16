@@ -4,10 +4,12 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Component;
 
+//Spring lo guarda en memoria cuando arranca la aplicacion 
 @Component("exampleComponent")
 public class ExampleComponent {
 
 	private static final Log LOG= LogFactory.getLog(ExampleComponent.class); 
+	
 	public void sayHello() {
 		LOG.info("HELLO FROM EXAMPLE COMPONENT");
 	}

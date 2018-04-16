@@ -1,8 +1,5 @@
 package com.udemy.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -12,15 +9,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.udemy.component.ExampleComponent;
-import com.udemy.model.Person;
+import com.udemy.service.ExampleService;
 
 
 @Controller
 @RequestMapping("/example")
 public class ExampleController {
 	
-	
 	@Autowired
+	@Qualifier("exampleService")
+	//Se declara la interface
+	private ExampleService exampleService;
+	
+	//Indica a spring que vamos a inyectar un componente que se encuentra en su memoria
+	@Autowired
+	//Indica el nombre del bin que está en su memoria
 	@Qualifier("exampleComponent")
 	private ExampleComponent exampleComponent;
 	
@@ -32,7 +35,7 @@ public class ExampleController {
 	@GetMapping("/exampleString")
 	public String exampleString(Model model) {
 		exampleComponent.sayHello();
-		model.addAttribute("people", getPeople());
+		model.addAttribute("people", exampleService.getListPeople());
 		return EXAMPLE_VIEW;
 	}
 	
@@ -41,17 +44,9 @@ public class ExampleController {
 	@GetMapping("/exampleMAV")
 	public ModelAndView exampleMAV() {
 		ModelAndView mav = new ModelAndView(EXAMPLE_VIEW);
-		mav.addObject("people", getPeople());
+		mav.addObject("people", exampleService.getListPeople());
 		return mav;
 	}
 	
-	private List<Person> getPeople(){
-		List<Person> people = new ArrayList<>();
-		people.add(new Person("Lalo", 22));
-		people.add(new Person("Lola", 21));
-		people.add(new Person("Lalo", 23));
-		people.add(new Person("Lola", 22));
-		return people;
-	}
-	
 }
+//El controller solo llama a servicios
