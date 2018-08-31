@@ -36,6 +36,7 @@ public class CourseController {
 		return mav;
 	}
 	
+
 	@PostMapping("/addCourse")
 	public String addCourse(@ModelAttribute("course") Course course) {
 		LOG.info("Call: " + "addCourse()" + " -- PARAM: " + course.toString());

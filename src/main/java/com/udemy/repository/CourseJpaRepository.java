@@ -10,13 +10,19 @@ import com.udemy.entity.Course;
 
 @Repository("courseJpaRepository")
 public interface CourseJpaRepository extends JpaRepository<Course, Serializable>{
+
+	//Metodos que funjirian la funcion de una consulta
 	
+	//Buscar por precio
 	public abstract Course findByPrice(int price);
 	
+	//Buscar por precio y nombre
 	public abstract Course findByPriceAndName(int price, String name);
 	
+	//una lista que busque por nombre y ordene por horas
 	public abstract List<Course> findByNameOrderByHours(String name);
 	
+	//Busca por nombre o precio
 	public abstract Course findByNameOrPrice(String name, int price);
 
 }

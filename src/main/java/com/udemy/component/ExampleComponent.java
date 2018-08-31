@@ -13,7 +13,7 @@ import com.udemy.repository.CourseJpaRepository;
 public class ExampleComponent {
 
 	private static final Log LOG= LogFactory.getLog(ExampleComponent.class); 
-	
+
 	@Autowired 
 	@Qualifier("courseJpaRepository")
 	private CourseJpaRepository courseJpaRepository;

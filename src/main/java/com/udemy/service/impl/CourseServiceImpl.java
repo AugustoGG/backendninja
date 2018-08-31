@@ -8,23 +8,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+
 import com.udemy.entity.Course;
 import com.udemy.repository.CourseJpaRepository;
 import com.udemy.service.CourseService;
 
-@Service("courseServiceImp")
-public class CourseServiceImp  implements CourseService{
+
+@Service("courseServiceImpl")
+public class CourseServiceImpl implements CourseService{
 	
-	public static final Log LOG = LogFactory.getLog(CourseServiceImp.class);
-	
+	private static final Log LOG = LogFactory.getLog(CourseServiceImpl.class);
+
 	@Autowired
 	@Qualifier("courseJpaRepository")
 	private CourseJpaRepository courseJpaRepository;
-	
 
 	@Override
 	public List<Course> listAllCourse() {
-		LOG.info("Call: " + "listAllCourse()");
+		LOG.info("Call: " + "ListAllCourses()");
 		courseJpaRepository.findAll();
 		return courseJpaRepository.findAll();
 	}
@@ -37,17 +38,13 @@ public class CourseServiceImp  implements CourseService{
 
 	@Override
 	public int removeCourse(int id) {
-		LOG.info("Call: " + "rermoveCourse()");
 		courseJpaRepository.delete(id);
 		return 0;
 	}
 
 	@Override
 	public Course update(Course course) {
-		LOG.info("Call: " + "updateCourse()");
 		return courseJpaRepository.save(course);
 	}
-	
-	
 
 }

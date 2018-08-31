@@ -29,4 +29,5 @@ public class CourseConverter {
 		course.setPrice(courseModel.getPrice());
 		return course;
 	}
+
 }
